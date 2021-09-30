@@ -3,6 +3,9 @@
 # Installs offlineimap (Python 3 version) to the specified directory.
 #
 
+set -e
+set -o pipefail
+
 TARGET=$1
 
 if [[ "$TARGET" = "" || "$TARGET" = "-h" || "$TARGET" = "--help" ]]; then
