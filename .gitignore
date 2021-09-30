@@ -1,0 +1,4 @@
+offlineimap3
+__pycache__
+{host,port,user,pass}.txt
+Makefile
