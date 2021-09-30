@@ -2,6 +2,11 @@
 #
 # Installs offlineimap (Python 3 version) to the specified directory.
 #
+# This has been mostly tested on macOS.
+#
+# For Linux (Debian), install the following packages (dependencies):
+#   $ sudo apt-get install --yes libkrb5-dev
+#
 
 set -e
 set -o pipefail
@@ -35,8 +40,11 @@ echo "[*] Setting up virtualenv"
 python3 -m venv "$TARGET/venv"
 
 # Install requirements for offlineimap (they're not specified in setup.py...)
-echo "[*] Installing dependencies"
-"$TARGET/venv/bin/pip" install -r "$TARGET/requirements.txt"
+echo "[*] Installing/upgrading pip + wheel"
+"$TARGET/venv/bin/pip" install -U pip wheel
+
+echo "[*] Installing/upgrading dependencies"
+"$TARGET/venv/bin/pip" install -U -r "$TARGET/requirements.txt"
 
 # Activate the virtualenv to ensure the following commands use the right python
 . "$TARGET/venv/bin/activate"
