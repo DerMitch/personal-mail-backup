@@ -19,11 +19,11 @@ if [[ -d "$TARGET/.git" ]]; then
     popd >/dev/null
 else
     echo "[*] Cloning repository to $TARGET"
-    git clone --depth=1 git@github.com:OfflineIMAP/offlineimap3.git "$TARGET"
+    git clone --depth=1 "https://github.com/OfflineIMAP/offlineimap3.git" "$TARGET"
 fi
 
 # Add venv to gitignore to prevent issues later
-if ! grep venv "$TARGET/.gitignore" >/dev/null; then
+if ! grep venv "$TARGET/.gitignore" >/dev/null 2>&1; then
     echo "venv/" >> "$TARGET/.gitignore"
 fi
 
